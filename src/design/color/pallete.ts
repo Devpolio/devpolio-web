@@ -1,7 +1,7 @@
 export const palette = Object.freeze({
   // Common
   common00: "#000",
-  common100: "fff",
+  common100: "#fff",
 
   // Neutral
   neutral5: "#0C0C0D",

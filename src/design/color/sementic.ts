@@ -29,6 +29,16 @@ export const DevFolioColor = Object.freeze({
   backgroundNormal: palette.common100,
   backgroundNeutral: palette.neutral99,
   backgroundAlternative: palette.neutral97,
+
+  // Status
+  statusNegative: palette.red50,
+  statusCautionary: palette.yellow50,
+  statusPositive: palette.green50,
+  statusHovered: palette.blue50,
+
+  // Static
+  staticBlack: palette.common00,
+  staticWhite: palette.common100,
 });
 
 export type DevFolioColorType = typeof DevFolioColor;
