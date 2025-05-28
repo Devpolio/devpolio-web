@@ -6,8 +6,11 @@ import Check from "@/assets/img/common/check.vue";
 import { CategoryProps } from "@/types/common/category/category.type";
 import { ref } from "vue";
 
-const { data } = defineProps<CategoryProps>();
+const emit = defineEmits<{
+  (e: "handleClickCategory", name: string): void;
+}>();
 const isOpen = ref(false);
+const { data } = defineProps<CategoryProps>();
 </script>
 
 <template>
@@ -18,7 +21,10 @@ const isOpen = ref(false);
       <ArrowDown v-else />
     </S.TitleWrap>
     <S.ItemWrap v-if="isOpen">
-      <S.Item v-for="category in data" :key="category.id">
+      <S.Item
+        v-for="category in data"
+        :key="category.id"
+        @click="() => emit('handleClickCategory', category.name)">
         <Check :color="category.isSelect ? 'primaryNormal' : 'lineNormal'" />
         <S.ItemName>{{ category.name }}</S.ItemName>
       </S.Item>

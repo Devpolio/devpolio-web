@@ -15,14 +15,19 @@ const categoryData = ref([
   { id: 5, name: "디자인", isSelect: false },
   { id: 6, name: "제조 · 생산", isSelect: false },
   { id: 7, name: "금융", isSelect: false },
-  { id: 6, name: "제조 · 생산", isSelect: false },
-  { id: 7, name: "금융", isSelect: false },
 ]);
 
 const selectCategory = computed(() => {
   const selectedItem = categoryData.value.find((item) => item.isSelect);
   return selectedItem ? selectedItem.name : undefined;
 });
+
+const handleClickCategory = (name: string) => {
+  categoryData.value = categoryData.value.map((item) => ({
+    ...item,
+    isSelect: item.name === name,
+  }));
+};
 </script>
 
 <template>
@@ -64,8 +69,12 @@ const selectCategory = computed(() => {
               <S.PortfolioInfo>
                 <S.PortfolioTitleText>포트폴리오 제목</S.PortfolioTitleText>
                 <S.PortfolioContent>
-                  <S.PortfolioContentText>작성자: 박시현</S.PortfolioContentText>
-                  <S.PortfolioContentText>작성일: 2025. 05</S.PortfolioContentText>
+                  <S.PortfolioContentText
+                    >작성자: 박시현</S.PortfolioContentText
+                  >
+                  <S.PortfolioContentText
+                    >작성일: 2025. 05</S.PortfolioContentText
+                  >
                 </S.PortfolioContent>
               </S.PortfolioInfo>
             </S.PortfolioInfoWrap>
@@ -77,7 +86,9 @@ const selectCategory = computed(() => {
           </S.PortfolioList>
         </S.PortfolioWrap>
       </S.Main>
-      <Category :data="categoryData" />
+      <Category
+        :data="categoryData"
+        @handleClickCategory="handleClickCategory" />
     </S.Wrap>
   </S.Container>
 </template>
