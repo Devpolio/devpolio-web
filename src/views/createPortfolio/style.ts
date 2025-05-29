@@ -154,12 +154,20 @@ export const File = styled.div`
   ${() => DevFolioShape.ExtraSmall};
   background-color: ${() => DevFolioColor.fillNormal};
   gap: 10px;
+  position: relative;
   cursor: pointer;
 `;
 
 export const Text = styled.p`
   color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Body2.Bold};
+`;
+
+export const Comment = styled.p`
+  color: ${() => DevFolioColor.labelAssistive};
   ${() => DevFolioTypography.Label.Bold};
+  position: absolute;
+  bottom: 10px;
 `;
 
 export const PreviewWrap = styled.div`

@@ -88,6 +88,7 @@ const handleChange = (e: Event) => {
               style="display: none" />
             <Upload />
             <S.Text>{{ fileName ? fileName : "포트폴리오 업로드" }}</S.Text>
+            <S.Comment>※ 포트폴리오는 .pdf 파일 형식으로 업로드해주세요!</S.Comment>
           </S.File>
           <S.PreviewWrap v-if="fileUrl">
             <S.PreviewTitle>미리보기</S.PreviewTitle>
