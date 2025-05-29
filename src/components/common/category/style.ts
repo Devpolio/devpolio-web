@@ -5,6 +5,7 @@ import { DevFolioShape } from "@/design/shape/shape";
 
 export const Container = styled.div`
   min-width: 270px;
+  width: 270px;
   height: min-content;
   display: flex;
   flex-direction: column;

@@ -3,6 +3,9 @@ import * as S from "./style";
 import Plus from "@/assets/img/common/plus.vue";
 import Sidebar from "@/components/common/sidebar/sidebar.vue";
 import PortfolioCard from "@/components/common/portfolioCard/portfolioCard.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 </script>
 
 <template>
@@ -12,7 +15,7 @@ import PortfolioCard from "@/components/common/portfolioCard/portfolioCard.vue";
       <S.Main>
         <S.TitleWrap>
           <S.Title>내 포트폴리오</S.Title>
-          <S.CreateButton>
+          <S.CreateButton @click="router.push('/create-portfolio')">
             <S.CreateText>포트폴리오 생성</S.CreateText>
             <Plus />
           </S.CreateButton>
