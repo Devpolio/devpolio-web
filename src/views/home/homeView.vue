@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import * as S from "./style";
+import { CATEGORY_ITEMS } from "@/constants/category.constant";
 import Portfolio from "@/assets/img/portfolio.svg";
 import Heart from "@/assets/img/common/heart/heart.vue";
-import HeartOutline from "@/assets/img/common/heart/heartOutline.vue";
 import Sidebar from "@/components/common/sidebar/sidebar.vue";
 import Category from "@/components/common/category/category.vue";
+import PortfolioCard from "@/components/common/portfolioCard/portfolioCard.vue";
 import { ref, computed } from "vue";
 
-const categoryData = ref([
-  { id: 1, name: "전체", isSelect: true },
-  { id: 2, name: "개발", isSelect: false },
-  { id: 3, name: "마케팅 · 광고", isSelect: false },
-  { id: 4, name: "경영 · 비지니스", isSelect: false },
-  { id: 5, name: "디자인", isSelect: false },
-  { id: 6, name: "제조 · 생산", isSelect: false },
-  { id: 7, name: "금융", isSelect: false },
-]);
+const categoryData = ref(CATEGORY_ITEMS);
 
 const selectCategory = computed(() => {
   const selectedItem = categoryData.value.find((item) => item.isSelect);
@@ -42,23 +35,7 @@ const handleClickCategory = (name: string) => {
         <S.RankWrap>
           <S.RankTitle>Top 10</S.RankTitle>
           <S.RankList>
-            <S.RankItem v-for="i in 10" :key="i">
-              <S.ItemImg :src="Portfolio" />
-              <S.ItemWrap>
-                <S.ItemInfo>
-                  <S.ItemTitle>포트폴리오 제목</S.ItemTitle>
-                  <S.ItemContent>
-                    <S.ItemText>작성자: 박시현</S.ItemText>
-                    <S.ItemText>작성일: 2025. 05</S.ItemText>
-                  </S.ItemContent>
-                </S.ItemInfo>
-                <S.ItemLike>
-                  <!-- Heart 사용해서 v-if 사용할 예정 -->
-                  <HeartOutline />
-                  <S.LikeCount>4</S.LikeCount>
-                </S.ItemLike>
-              </S.ItemWrap>
-            </S.RankItem>
+            <PortfolioCard />
           </S.RankList>
         </S.RankWrap>
         <S.PortfolioWrap>
