@@ -4,6 +4,12 @@ import * as S from "./style";
 import { ref } from "vue";
 import { SigninParam } from "@/repository/auth/auth.param";
 import authRepository from "@/repository/auth/auth.repository";
+import token from "@/libs/token/token";
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+} from "@/constants/token/token.constant";
+import { showToast } from "@/libs/toast/swal";
 
 const router = useRouter();
 const signinValue = ref<SigninParam>({
@@ -13,15 +19,19 @@ const signinValue = ref<SigninParam>({
 
 const handleClickSignin = () => {
   if (!signinValue.value.email || !signinValue.value.password) {
-    alert("로그인 정보를 모두 입력해주세요");
+    showToast("error", "로그인 정보를 모두 입력해주세요");
     return;
   }
 
   try {
-    authRepository.signin(signinValue.value).then((res) => console.log(res));
-    router.push("/");
+    authRepository.signin(signinValue.value).then((res) => {
+      token.setToken(ACCESS_TOKEN_KEY, res.accessToken);
+      token.setToken(REFRESH_TOKEN_KEY, res.refreshToken);
+      showToast("success", "로그인을 성공했습니다");
+      router.push("/");
+    });
   } catch {
-    alert("로그인을 실패했습니다");
+    showToast("error", "로그인을 실패했습니다");
   }
 };
 </script>

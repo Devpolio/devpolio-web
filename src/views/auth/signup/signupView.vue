@@ -4,6 +4,7 @@ import * as S from "./style";
 import { SignupParam } from "@/repository/auth/auth.param";
 import authRepository from "@/repository/auth/auth.repository";
 import { useRouter } from "vue-router";
+import { showToast } from "@/libs/toast/swal";
 
 const router = useRouter();
 const signupValue = ref<SignupParam>({
@@ -18,16 +19,17 @@ const handleClickSignup = () => {
     !signupValue.value.email ||
     !signupValue.value.password
   ) {
-    alert("회원가입 정보를 모두 입력해주세요");
+    showToast("error", "회원가입 정보를 모두 입력해주세요");
     return;
   }
 
   try {
-    authRepository
-      .signup(signupValue.value)
-      .then((res) => router.push("/signin"));
+    authRepository.signup(signupValue.value).then(() => {
+      showToast("success", "회원가입이 완료되었습니다");
+      router.push("/signin");
+    });
   } catch {
-    alert("회원가입을 실패했습니다");
+    showToast("error", "회원가입을 실패했습니다");
   }
 };
 </script>
