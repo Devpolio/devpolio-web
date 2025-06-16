@@ -60,6 +60,18 @@ const handleChange = (e: Event) => {
               >
             </S.InputWrap>
           </S.TitleAuthorInputWrap>
+          <S.PasswordInputWrap>
+            <S.PasswordInputTextWrap>
+              <S.PasswordInputTitle>비밀번호</S.PasswordInputTitle>
+              <S.PasswordInputDescription
+                >포트폴리오 삭제 시 필요한
+                비밀번호입니다.</S.PasswordInputDescription
+              >
+            </S.PasswordInputTextWrap>
+            <S.PasswordInput
+              type="password"
+              placeholder="비밀번호를 입력해주세요"></S.PasswordInput>
+          </S.PasswordInputWrap>
           <S.VisibilityToggleWrap>
             <S.VisibilityToggleTitle>공개 여부</S.VisibilityToggleTitle>
             <S.VisibilityToggle :isOpen="isOpen">
@@ -88,7 +100,9 @@ const handleChange = (e: Event) => {
               style="display: none" />
             <Upload />
             <S.Text>{{ fileName ? fileName : "포트폴리오 업로드" }}</S.Text>
-            <S.Comment>※ 포트폴리오는 .pdf 파일 형식으로 업로드해주세요!</S.Comment>
+            <S.Comment
+              >※ 포트폴리오는 .pdf 파일 형식으로 업로드해주세요!</S.Comment
+            >
           </S.File>
           <S.PreviewWrap v-if="fileUrl">
             <S.PreviewTitle>미리보기</S.PreviewTitle>

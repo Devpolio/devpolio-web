@@ -8,7 +8,7 @@ export interface SigninResponse {
   refreshToken: string;
 }
 
-export interface RefreshReponse {
+export interface RefreshResponse {
   accessToken: string;
   refreshToken: string;
 }

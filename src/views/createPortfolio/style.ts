@@ -79,6 +79,41 @@ export const Input = styled.input`
   }
 `;
 
+export const PasswordInputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const PasswordInputTextWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PasswordInputTitle = styled.p`
+  color: ${() => DevFolioColor.labelNormal};
+  ${() => DevFolioTypography.Body1.Bold};
+`;
+
+export const PasswordInputDescription = styled.p`
+  color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Label.Bold};
+`;
+
+export const PasswordInput = styled.input`
+  color: ${() => DevFolioColor.labelNormal};
+  ${() => DevFolioTypography.Body1.Medium};
+  width: 320px;
+  height: auto;
+  border: 1px solid ${() => DevFolioColor.lineNormal};
+  ${() => DevFolioShape.ExtraSmall};
+  padding: 15px;
+
+  &::placeholder {
+    color: ${() => DevFolioColor.labelAssistive};
+  }
+`;
+
 export const VisibilityToggleWrap = styled.div`
   width: auto;
   height: auto;

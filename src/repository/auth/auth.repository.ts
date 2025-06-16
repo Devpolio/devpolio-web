@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "@/config/config.json";
 import { SignupParam, SigninParam, TokenRefreshParam } from "./auth.param";
 import {
-  RefreshReponse,
+  RefreshResponse,
   SigninResponse,
   SignupResponse,
 } from "@/types/auth/auth.type";
@@ -18,8 +18,8 @@ class AuthRepository {
     return data;
   }
 
-  public async tokenRefresh(Param: TokenRefreshParam): Promise<RefreshReponse> {
-    const { data } = await axios.post(`${config.serverUrl}/auth/signin`, Param);
+  public async tokenRefresh(Param: TokenRefreshParam): Promise<RefreshResponse> {
+    const { data } = await axios.post(`${config.serverUrl}/auth/refresh`, Param);
     return data;
   }
 }
