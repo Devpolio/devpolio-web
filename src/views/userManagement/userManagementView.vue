@@ -8,6 +8,8 @@ import { UserListResponse } from "@/types/user/user.type";
 
 const userList = ref<UserListResponse[]>([]);
 const searchValue = ref<string>("");
+const name = ref<string>("");
+const email = ref<string>("");
 const buttonData = ref([
   { id: "all", label: "전체", isAtv: true },
   { id: "id", label: "유저 번호", isAtv: false },
@@ -26,6 +28,8 @@ const handleClickButton = (id: string) => {
 };
 
 const handleKeyDownSearch = () => {
+  if (!searchValue.value) return;
+
   try {
     if (activeButtonId.value === "id") {
       const id = Number(searchValue.value);
@@ -35,7 +39,19 @@ const handleKeyDownSearch = () => {
         return;
       }
 
-      userRepository.getUserFilter(id).then((data) => (userList.value = data));
+      userRepository
+        .getUserFilter(id)
+        .then((data) => (userList.value = data))
+        .catch(() => showToast("error", "유저가 없습니다."));
+    } else {
+      searchValue.value.includes("@")
+        ? (email.value = searchValue.value)
+        : (name.value = searchValue.value);
+
+      userRepository
+        .getUserSearch(name.value, email.value)
+        .then((data) => (userList.value = data))
+        .catch(() => showToast("error", "유저가 없습니다."));
     }
   } catch {
     showToast("error", "사용자를 조회하는데 오류가 발생했습니다");

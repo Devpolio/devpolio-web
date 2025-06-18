@@ -24,9 +24,9 @@ class UserRepository {
     name: string,
     email: string
   ): Promise<UserListResponse[]> {
-    const { data } = await DevfolioAxios.get(`/admin/users/search`, {
-      params: { name, email },
-    });
+    const { data } = await DevfolioAxios.get(
+      `/admin/users/search/asdf;name=${name};email=${email}`
+    );
     return data;
   }
 }
