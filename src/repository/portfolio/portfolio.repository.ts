@@ -26,7 +26,9 @@ class PortfolioRepository {
     return data;
   }
 
-  public async postPortfolio(formData: PortfolioParam | FormData): Promise<void> {
+  public async postPortfolio(
+    formData: PortfolioParam | FormData
+  ): Promise<void> {
     const { data } = await DevfolioAxios.post(
       `${config.ip}/portfolio`,
       formData,
@@ -41,6 +43,20 @@ class PortfolioRepository {
 
   public async deletePortfolio(id: number): Promise<void> {
     const { data } = await DevfolioAxios.delete(`${config.ip}/portfolio/${id}`);
+    return data;
+  }
+
+  public async postPortfolioLike(id: number): Promise<void> {
+    const { data } = await DevfolioAxios.post(
+      `${config.ip}/portfolio/${id}/like`
+    );
+    return data;
+  }
+
+  public async deletePortfolioLike(id: number): Promise<void> {
+    const { data } = await DevfolioAxios.delete(
+      `${config.ip}/portfolio/${id}/like`
+    );
     return data;
   }
 }

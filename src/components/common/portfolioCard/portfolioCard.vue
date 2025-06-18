@@ -3,12 +3,27 @@ import * as S from "./style";
 import Portfolio from "@/assets/img/portfolio.svg";
 import HeartOutline from "@/assets/img/common/heart/heartOutline.vue";
 import { PortfolioListResponse } from "@/types/portfolio/portfolio.type";
+import Heart from "@/assets/img/common/heart/heart.vue";
+import dayjs from "dayjs";
+import Trash from "@/assets/img/common/trash.vue";
+import { onMounted } from "vue";
+import userRepository from "@/repository/user/user.repository";
+import { useUserStore } from "@/store/user/user.store";
+import { storeToRefs } from "pinia";
 
 interface PortfolioCardProps {
   portfolioList: PortfolioListResponse[];
 }
 
+const { user } = storeToRefs(useUserStore());
 const { portfolioList } = defineProps<PortfolioCardProps>();
+
+const emit = defineEmits<{
+  (e: "handleLikeClick", id: number, isLiked: boolean): void;
+  (e: "handlePreviewClick", id: number): void;
+  (e: "handleDownloadClick", id: number): void;
+  (e: "handleDeleteClick", id: number): void;
+}>();
 </script>
 
 <template>
@@ -23,15 +38,32 @@ const { portfolioList } = defineProps<PortfolioCardProps>();
           <S.Title>{{ item.title }}</S.Title>
           <S.Content>
             <S.Text>작성자: {{ item.author }}</S.Text>
-            <S.Text>작성일: {{ item.createdAt }}</S.Text>
+            <S.Text
+              >작성일: {{ dayjs(item.createdAt).format("YYYY-MM-DD") }}</S.Text
+            >
           </S.Content>
         </S.Info>
-        <S.Like>
-          <!-- Heart 사용해서 v-if 사용할 예정 -->
-          <HeartOutline />
-          <S.LikeCount>{{ item.likes || 0 }}</S.LikeCount>
+        <S.Like @click="() => emit('handleLikeClick', item.id, item.isLiked)">
+          <Heart v-if="item.isLiked" />
+          <HeartOutline v-else />
+          <S.LikeCount>{{ item.likeCount || 0 }}</S.LikeCount>
         </S.Like>
       </S.Wrap>
+      <S.ButtonWrap>
+        <S.GetButtonWrap>
+          <S.PreviewButton @click="() => emit('handlePreviewClick', item.id)">
+            미리보기
+          </S.PreviewButton>
+          <S.DownloadButton @click="() => emit('handleDownloadClick', item.id)">
+            다운로드
+          </S.DownloadButton>
+        </S.GetButtonWrap>
+        <S.DeleteButtonWrap v-if="item.author === user.name">
+          <Trash
+            color="#767680"
+            @click="() => emit('handleDeleteClick', item.id)" />
+        </S.DeleteButtonWrap>
+      </S.ButtonWrap>
     </S.Container>
   </template>
 </template>

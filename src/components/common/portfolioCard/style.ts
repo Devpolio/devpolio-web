@@ -11,7 +11,6 @@ export const Container = styled.div`
   ${() => DevFolioShape.ExtraSmall};
   padding: 10px;
   gap: 20px;
-  cursor: pointer;
 
   &:hover {
     background-color: ${() => DevFolioColor.fillNormal};
@@ -65,6 +64,7 @@ export const Like = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 `;
 
 export const LikeCount = styled.p`
@@ -80,4 +80,45 @@ export const NullPortfolio = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ButtonWrap = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+`;
+
+export const GetButtonWrap = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const PreviewButton = styled.button`
+  color: ${() => DevFolioColor.staticWhite};
+  ${() => DevFolioTypography.Label.Bold};
+  ${() => DevFolioShape.Small};
+  background-color: ${() => DevFolioColor.primaryNormal};
+  padding: 8px 16px;
+  cursor: pointer;
+`;
+
+export const DownloadButton = styled.button`
+  color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Label.Bold};
+  ${() => DevFolioShape.Small};
+  border: 1px solid ${() => DevFolioColor.lineNormal};
+  background-color: ${() => DevFolioColor.fillAssistive};
+  padding: 8px 16px;
+  cursor: pointer;
+`;
+
+export const DeleteButtonWrap = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;

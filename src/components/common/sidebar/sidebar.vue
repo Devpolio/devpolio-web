@@ -5,8 +5,13 @@ import Avatar from "@/assets/img/Avatar.svg";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import userRepository from "@/repository/user/user.repository";
-import { UserResponse } from "@/types/user/user.type";
 import token from "@/libs/token/token";
+import { useUserStore } from "@/store/user/user.store";
+import { storeToRefs } from "pinia";
+
+const userStore = useUserStore();
+const { setUser, resetUser } = userStore;
+const { user } = storeToRefs(userStore);
 
 const route = useRoute();
 const router = useRouter();
@@ -14,13 +19,9 @@ const isSelect = ref({
   home: false,
   myPortfolio: false,
 });
-const user = ref<UserResponse>({
-  name: "",
-  email: "",
-  role: "",
-});
 
 const handleClickLogout = () => {
+  resetUser();
   token.clearToken();
   router.push("/signin");
 };
@@ -32,7 +33,7 @@ onMounted(() => {
     myPortfolio: currentPath === "/my-portfolio",
   };
 
-  userRepository.getUser().then((res) => (user.value = res));
+  userRepository.getUser().then((res) => setUser(res));
 });
 </script>
 

@@ -3,6 +3,7 @@ interface File {
   originalFileName: string;
   viewUrl: string;
   downloadUrl: string;
+  storedFileName: string;
 }
 
 export interface PortfolioResponse {
@@ -11,7 +12,6 @@ export interface PortfolioResponse {
   author: string;
   category: string;
   createdAt: string;
-  likes: number;
   files: File[];
   public: boolean;
 }
@@ -21,5 +21,6 @@ export interface PortfolioListResponse {
   title: string;
   author: string;
   createdAt: string;
-  likes: number;
+  likeCount: number;
+  isLiked: boolean;
 }

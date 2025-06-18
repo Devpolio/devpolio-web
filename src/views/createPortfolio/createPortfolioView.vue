@@ -10,7 +10,10 @@ import { useRouter } from "vue-router";
 import { PortfolioParam } from "@/repository/portfolio/portfolio.param";
 import { showToast } from "@/libs/toast/swal";
 import portfolioRepository from "@/repository/portfolio/portfolio.repository";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/store/user/user.store";
 
+const { user } = storeToRefs(useUserStore());
 const router = useRouter();
 const isOpen = ref(false);
 const fileInput: Ref<HTMLInputElement | null> = ref(null);
@@ -19,7 +22,7 @@ const fileUrls = ref<string[]>([]);
 const categoryData = ref(CATEGORY_ITEMS);
 const portfolioData = ref<PortfolioParam>({
   title: "",
-  author: "",
+  author: user.value.name || "",
   category: "",
   isPublic: false,
   password: "",
@@ -54,12 +57,10 @@ const handleChange = (e: Event) => {
 };
 
 const handleClickCreate = () => {
-  if (
-    !portfolioData.value.title ||
-    !portfolioData.value.author ||
-    !portfolioData.value.password
-  ) {
-    showToast("error", "제목, 작성자, 비밀번호를 모두 입력해주세요.");
+  portfolioData.value.author = user.value.name;
+
+  if (!portfolioData.value.title || !portfolioData.value.author) {
+    showToast("error", "제목, 작성자를 모두 입력해주세요.");
     return;
   }
 
@@ -122,6 +123,8 @@ onMounted(() => {
             <S.InputWrap>
               <S.InputTitle>작성자</S.InputTitle>
               <S.Input
+                disabled
+                :value="user.name"
                 v-model="portfolioData.author"
                 placeholder="작성자를 입력해주세요"></S.Input>
             </S.InputWrap>
