@@ -4,8 +4,7 @@ import { DevFolioShape } from "@/design/shape/shape";
 import { DevFolioTypography } from "@/design/typography/typography";
 
 export const Container = styled.div`
-  width: auto;
-  height: auto;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   ${() => DevFolioShape.ExtraSmall};
@@ -120,5 +119,15 @@ export const DeleteButtonWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+`;
+
+export const ModifyButton = styled.button`
+  color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Label.Bold};
+  ${() => DevFolioShape.Small};
+  border: 1px solid ${() => DevFolioColor.lineNormal};
+  background-color: ${() => DevFolioColor.fillNeutral};
+  padding: 8px 16px;
   cursor: pointer;
 `;

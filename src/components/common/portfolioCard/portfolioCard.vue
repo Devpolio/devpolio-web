@@ -6,15 +6,15 @@ import { PortfolioListResponse } from "@/types/portfolio/portfolio.type";
 import Heart from "@/assets/img/common/heart/heart.vue";
 import dayjs from "dayjs";
 import Trash from "@/assets/img/common/trash.vue";
-import { onMounted } from "vue";
-import userRepository from "@/repository/user/user.repository";
 import { useUserStore } from "@/store/user/user.store";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 
 interface PortfolioCardProps {
   portfolioList: PortfolioListResponse[];
 }
 
+const router = useRouter();
 const { user } = storeToRefs(useUserStore());
 const { portfolioList } = defineProps<PortfolioCardProps>();
 
@@ -57,6 +57,11 @@ const emit = defineEmits<{
           <S.DownloadButton @click="() => emit('handleDownloadClick', item.id)">
             다운로드
           </S.DownloadButton>
+          <S.ModifyButton
+            v-if="item.author === user.name"
+            @click="router.push(`/update-portfolio/${item.id}`)"
+            >수정</S.ModifyButton
+          >
         </S.GetButtonWrap>
         <S.DeleteButtonWrap v-if="item.author === user.name">
           <Trash
