@@ -6,7 +6,7 @@ export const useUserStore = defineStore("user", {
     user: {
       name: "",
       email: "",
-      role: "",
+      roles: [],
     },
   }),
   actions: {
@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", {
       this.user = {
         name: "",
         email: "",
-        role: "",
+        roles: [],
       };
     },
   },

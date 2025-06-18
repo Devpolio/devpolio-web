@@ -18,6 +18,7 @@ const router = useRouter();
 const isSelect = ref({
   home: false,
   myPortfolio: false,
+  userManagement: false,
 });
 
 const handleClickLogout = () => {
@@ -31,6 +32,7 @@ onMounted(() => {
   isSelect.value = {
     home: currentPath === "/",
     myPortfolio: currentPath === "/my-portfolio",
+    userManagement: currentPath === "/user-management",
   };
 
   userRepository.getUser().then((res) => setUser(res));
@@ -47,6 +49,12 @@ onMounted(() => {
           :isSelect="isSelect.myPortfolio"
           @click="router.push('/my-portfolio')"
           >내 포트폴리오</S.Item
+        >
+        <S.Item
+          v-if="user.roles.includes('ROLE_ADMIN')"
+          :isSelect="isSelect.userManagement"
+          @click="router.push('/user-management')"
+          >회원 관리</S.Item
         >
       </S.Menu>
     </S.Wrap>

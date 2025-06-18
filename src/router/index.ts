@@ -4,6 +4,8 @@ import MyPortfolio from "@/views/myPortfolio/myPortfolioView.vue";
 import CreatePortfolio from "@/views/createPortfolio/createPortfolioView.vue";
 import Signup from "@/views/auth/signup/signupView.vue";
 import Signin from "@/views/auth/signin/signinView.vue";
+import updatePortfolio from "@/views/updatePortfolio/updatePortfolioView.vue";
+import UserManagement from "@/views/userManagement/userManagementView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +27,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/create-portfolio",
     component: CreatePortfolio,
+  },
+  {
+    path: "/update-portfolio/:id",
+    component: updatePortfolio,
+  },
+  {
+    path: "/user-management",
+    component: UserManagement,
   },
 ];
 

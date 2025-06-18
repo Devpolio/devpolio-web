@@ -6,3 +6,10 @@ export interface PortfolioParam {
   password: string;
   files: File[];
 }
+
+export interface UpdatePortfolioParam {
+  title: string;
+  author: string;
+  category: string;
+  isPublic: boolean;
+}

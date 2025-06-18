@@ -13,7 +13,12 @@ import { showToast } from "@/libs/toast/swal";
 import { PortfolioListResponse } from "@/types/portfolio/portfolio.type";
 import HeartOutline from "@/assets/img/common/heart/heartOutline.vue";
 import fileRepository from "@/repository/file/file.repository";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/store/user/user.store";
+import { useRouter } from "vue-router";
 
+const { user } = storeToRefs(useUserStore());
+const router = useRouter();
 const categoryData = ref(CATEGORY_ITEMS);
 const portfolioList = ref<PortfolioListResponse[]>([]);
 
@@ -204,6 +209,19 @@ onMounted(() => {
                 </S.PortfolioInfo>
               </S.PortfolioInfoWrap>
               <S.InfoWrap>
+                <S.ButtonWrap>
+                  <S.ModifyButton
+                    v-if="item.author === user.name"
+                    @click="router.push(`/update-portfolio/${item.id}`)"
+                    >수정</S.ModifyButton
+                  >
+                  <S.PreviewButton @click="handleClickPreview(item.id)"
+                    >미리보기</S.PreviewButton
+                  >
+                  <S.DownloadButton @click="handleClickDownload(item.id)"
+                    >다운로드</S.DownloadButton
+                  >
+                </S.ButtonWrap>
                 <S.PortfolioLikeWrap
                   @click="handleClickLike(item.id, item.isLiked)">
                   <Heart v-if="item.isLiked" />
@@ -212,14 +230,6 @@ onMounted(() => {
                     item.likeCount
                   }}</S.PortfolioLikeCount>
                 </S.PortfolioLikeWrap>
-                <S.ButtonWrap>
-                  <S.PreviewButton @click="handleClickPreview(item.id)"
-                    >미리보기</S.PreviewButton
-                  >
-                  <S.DownloadButton @click="handleClickDownload(item.id)"
-                    >다운로드</S.DownloadButton
-                  >
-                </S.ButtonWrap>
               </S.InfoWrap>
             </S.PortfolioList>
           </template>
