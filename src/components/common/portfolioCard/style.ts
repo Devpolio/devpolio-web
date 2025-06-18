@@ -27,8 +27,8 @@ export const Wrap = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 `;
 
 export const Info = styled.div`

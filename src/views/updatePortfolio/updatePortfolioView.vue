@@ -72,7 +72,7 @@ onMounted(() => {
     <Sidebar />
     <S.Wrap>
       <S.Box>
-        <S.Title>포트폴리오 생성</S.Title>
+        <S.Title>포트폴리오 수정</S.Title>
         <S.Form>
           <S.TitleAuthorInputWrap>
             <S.InputWrap>

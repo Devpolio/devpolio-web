@@ -13,14 +13,17 @@ class UserRepository {
     return data;
   }
 
-  public async getUserFilter(userId: number): Promise<void> {
+  public async getUserFilter(userId: number): Promise<UserListResponse[]> {
     const { data } = await DevfolioAxios.get(
       `${config.ip}/admin/users/${userId}`
     );
     return data;
   }
 
-  public async getUserSearch(name: string, email: string): Promise<void> {
+  public async getUserSearch(
+    name: string,
+    email: string
+  ): Promise<UserListResponse[]> {
     const { data } = await DevfolioAxios.get(`/admin/users/search`, {
       params: { name, email },
     });
