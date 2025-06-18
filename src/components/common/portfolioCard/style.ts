@@ -71,3 +71,13 @@ export const LikeCount = styled.p`
   color: ${() => DevFolioColor.labelNormal};
   ${() => DevFolioTypography.Label.Medium};
 `;
+
+export const NullPortfolio = styled.div`
+  width: 100%;
+  height: 150px;
+  color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Body2.Bold};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

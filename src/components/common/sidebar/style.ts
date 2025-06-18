@@ -39,6 +39,13 @@ export const Item = styled("div", itemProps)`
   cursor: pointer;
 `;
 
+export const Bottom = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 export const Profile = styled.div`
   width: 100%;
   height: auto;
@@ -57,4 +64,13 @@ export const Avatar = styled.img`
 export const ProfileName = styled.div`
   color: ${() => DevFolioColor.labelNormal};
   ${() => DevFolioTypography.Body1.Bold};
+`;
+
+export const Logout = styled.p`
+  color: ${() => DevFolioColor.statusNegative};
+  ${() => DevFolioTypography.Body2.Bold};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;

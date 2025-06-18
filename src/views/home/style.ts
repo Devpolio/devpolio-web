@@ -155,3 +155,12 @@ export const PortfolioLikeCount = styled.p`
   color: ${() => DevFolioColor.labelAssistive};
   ${() => DevFolioTypography.Label.Medium};
 `;
+
+export const NullPortfolio = styled.div`
+  color: ${() => DevFolioColor.labelAssistive};
+  ${() => DevFolioTypography.Body2.Bold};
+  aspect-ratio: 3 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

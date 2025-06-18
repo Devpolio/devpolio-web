@@ -11,6 +11,7 @@ const createAxiosInstance = (config: AxiosRequestConfig) => {
   const baseConfig: AxiosRequestConfig = {
     headers: {
       "Access-Control-Allow-Origin": "*",
+      "ngrok-skip-browser-warning": "true",
     },
   };
 
@@ -21,7 +22,7 @@ const createAxiosInstance = (config: AxiosRequestConfig) => {
 };
 
 export const DevfolioAxios = createAxiosInstance({
-  baseURL: config.serverUrl,
+  baseURL: config.ip,
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
   },

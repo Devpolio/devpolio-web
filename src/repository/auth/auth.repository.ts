@@ -9,17 +9,17 @@ import {
 
 class AuthRepository {
   public async signup(Param: SignupParam): Promise<SignupResponse> {
-    const { data } = await axios.post(`${config.serverUrl}/auth/signup`, Param);
+    const { data } = await axios.post(`${config.ip}/auth/signup`, Param);
     return data;
   }
 
   public async signin(Param: SigninParam): Promise<SigninResponse> {
-    const { data } = await axios.post(`${config.serverUrl}/auth/signin`, Param);
+    const { data } = await axios.post(`${config.ip}/auth/signin`, Param);
     return data;
   }
 
   public async tokenRefresh(Param: TokenRefreshParam): Promise<RefreshResponse> {
-    const { data } = await axios.post(`${config.serverUrl}/auth/refresh`, Param);
+    const { data } = await axios.post(`${config.ip}/auth/refresh`, Param);
     return data;
   }
 }
